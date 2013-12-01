@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Google</title>
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="../parcels.js"></script>
+	<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map { height: 100% }
+    </style>
+<head>
+<body>
+	<div id="map">
+	<script>
+	function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(43.03, -85.55),
+          zoom: 10
+        };
+        map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+            
+        for (var i = 0; i < parcels.features.length; i++) {
+        	newCoords = [];
+    		coords = parcels.features[i].geometry.coordinates[0];
+    		for (var j = 0; j < coords.length; j++) {
+    			lon = coords[j][0];
+    			lat = coords[j][1];
+    			newCoords.push(new google.maps.LatLng(lat, lon));
+    		}
+    		polygon = new google.maps.Polygon({
+    			paths: newCoords,
+    			strokeWeight: 1,
+    			strokeColor: 'FF0000',
+    			address: parcels.features[i].properties.Address
+    		});
+    		polygon.setMap(map);
+    		
+    		google.maps.event.addListener(polygon, 'click', function() {
+    			showInfo(this.address);
+  			});
+    	}
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    
+    function showInfo(address) {
+    	alert(address);
+    }
+	</script>
+</body>
+</html>
