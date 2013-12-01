@@ -7,9 +7,15 @@ function init() {
   		detectRetina: true
 	});
 
-	// Add geoJSON layer
+	// Add geoJSON layer for parcels
 	L.geoJson(parcels, {
 		onEachFeature: bindInfo // Call this function on each geoJSON feature
+	}).addTo(map);
+	
+	// Add geoJSON layer for Kent County
+	L.geoJson(kent_county, {
+		style: { color: '#578F5F',
+				 opacity: 0.25 }
 	}).addTo(map);
 	
 	// Add search box
