@@ -1,0 +1,4 @@
+desc "Deploy to Webfaction"
+task :deploy do
+  sh "rsync -rtz --delete ./ pichot@pichot.webfactional.com:~/webapps/protect_mi/"
+end
