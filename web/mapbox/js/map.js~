@@ -31,8 +31,3 @@ function bindPrivateInfo(feature, layer) {
 		layer.bindPopup('Address: ' + feature.properties.Address + '<br>' +
 						'City: ' + 	  feature.properties.City );	
 }
-
-function bindStateInfo(feature, layer) {
-	layer.bindPopup('Description: ' + feature.properties.ownerdesc + '<br>' +
-					'Lesee Name: ' + feature.properties.vn_leseenm );
-}
